@@ -1,11 +1,7 @@
 const WebSocketServer = require("ws").Server;
-const express = require("express");
-const path = require("path");
 const server = require("http").createServer();
 
-const app = express();
 
-app.use(express.json());
 const wss = new WebSocketServer({ server: server });
 wss.on("connection", (ws, req) => {
   console.log(`Connection request from: ${req.connection.remoteAddress}`);
@@ -31,7 +27,6 @@ wss.on("connection", (ws, req) => {
   });
 });
 
-server.on("request", app);
 server.listen(8080, () => {
   console.log("Server listening on http://localhost:8080");
 });
